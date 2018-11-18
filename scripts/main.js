@@ -1,4 +1,4 @@
-api_base_url = "http://jeremiahang.pythonanywhere.com/api/examtt"
+api_base_url = "https://jeremiahang.pythonanywhere.com/api/examtt"
 
 window.onload = function() {
     main();
