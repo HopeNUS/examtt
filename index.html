@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HopeNUS Examtt</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+
+<body>
+    <div id = 'container'>
+        <div id = 'header'>
+            <center><h1>Hope NUS Examtt</h1></center>
+        </div>
+        <div id = 'body'>
+            <div class = 'section' id = 'user-guide'>
+                <h2>User Guide</h2>
+                <div id = 'step-container'>
+                    <div class = 'step'>
+                        <p>1. Go to <a href="https://myaces.nus.edu.sg/examtt">myaces</a> and log in.</p>
+                    </div>
+                    <div class = 'step'>
+                        <p>2. Copy the whole page <br/><i>(cmd + a, cmd + c)</i></p>
+                    </div>
+                    <div class = 'step'>
+                        <p>3. Paste below <i>(cmd + v)</i><br/>and submit</p>
+                    </div>
+                </div>
+            </div>
+            <div class = 'section' id = 'entry-form'>
+                <h2>Enter Here</h2>
+                <div id = 'form-area'>
+                    <form action="/api/examtt/parse" name='examtt' id='examtt-input-form'>
+                        <textarea id = 'examtt-textarea' name = 'examtt-textarea'></textarea>
+                        <br/>
+                        <input type='submit' id='examtt-submit'/>
+                    </form>
+                </div>
+            </div>
+            <div class = 'section hidden' id = 'examtt-viewer'>
+                <h2>Successfully Added!</h2>
+                <div id = 'examtt-confirmation'>
+                    <div id = 'examtt-confirmation-count'>
+                        <h3>Hey <span id='examtt-confirmation-name'>Jeremiah Ang Yong En</span>!<br/>
+                            I've detected <span id='examtt-confirmation-number'>3</span> modules</h3>
+                    </div>
+                    <div id = 'examtt-confirmation-modules'>
+                        <div class = 'examtt-module'>CS4234</div>
+                        <div class = 'examtt-module'>CS4226</div>
+                        <div class = 'examtt-module'>CS4231</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id = 'footer'></div>
+    </div>
+</div>
+
+<script type='text/javascript' src="scripts/main.js"></script>
+</body>
+</html>
