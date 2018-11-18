@@ -50,6 +50,7 @@ body {
     margin-bottom: 10px;
     background-color: #5070B5;
     color: white;
+    border-radius: 0px;
 }
 
 .step a {
