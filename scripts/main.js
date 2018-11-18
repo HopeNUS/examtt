@@ -42,6 +42,7 @@ function send_json(url, json) {
 }
 
 function update_confirmation(msg) {
+    if (msg === "") return;
     document.getElementById("examtt-viewer").classList.remove("hidden");
     name_dom = document.getElementById("examtt-confirmation-name");
     number_dom = document.getElementById("examtt-confirmation-number");
