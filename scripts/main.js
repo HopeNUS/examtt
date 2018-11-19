@@ -1,7 +1,17 @@
 api_base_url = "https://jeremiahang.pythonanywhere.com/api/examtt"
 
+LOADER = null;
+
 window.onload = function() {
     main();
+    LOADER = document.getElementById("loading")
+}
+
+function play_loader() {
+    LOADER.classList.remove("stop")
+}
+function stop_loader() {
+    LOADER.classList.add("stop")
 }
 
 function main() {
@@ -32,6 +42,7 @@ function send_examtt(examtt_str) {
 }
 
 function send_json(url, json) {
+    play_loader()
     const Http = new XMLHttpRequest();
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -43,6 +54,7 @@ function send_json(url, json) {
 
 function update_confirmation(msg) {
     if (msg === "") return;
+    stop_loader()
     document.getElementById("examtt-viewer").classList.remove("hidden");
     name_dom = document.getElementById("examtt-confirmation-name");
     number_dom = document.getElementById("examtt-confirmation-number");
