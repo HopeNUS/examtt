@@ -48,7 +48,7 @@ body {
 .step {
     width: 100%;
     text-align: left;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
     background-color: #5070B5;
     color: white;
     border-radius: 0px;
@@ -156,7 +156,7 @@ body {
     box-shadow: 0px 2px #c56a46;
 }
 
-#loading-overlay {
+.overlay-bg {
     position: fixed;
     z-index: 8888;
     top: 0;
@@ -166,20 +166,17 @@ body {
     background-color: rgba(255,255,255,0.4);
     border-radius: 0px;
 }
-
-#loading-box {
+.overlay-box {
     position: fixed;
-    left: 50%;
-    margin-left: -15%;
-    top: 50%;
-    margin-top: -15%;
-
-    width: 30%;
     background-color: #ffd470;
     z-index: 9999;
 
     box-shadow: 0 5px #e7bd5b;
     border: #e7bd5b solid 1px;
+
+    margin: 100px 7%;
+    width: 80%;
+    padding: 0px 10px 30px 10px;
 }
 
 #loading-text {
@@ -196,6 +193,76 @@ body {
     text-align: center;
 }
 
-#loading.stop {
+#loading.hidden {
     display: none;
+}
+
+#view-date-results {
+    margin-bottom: 30px;
+}
+
+#view-date-controller{
+    margin-bottom: 30px;
+}
+
+#view-date-day {
+    margin-bottom:0px;
+}
+
+.view-date-result {
+    display: inline-block;
+    width: 95%;
+    background-color: #EEE;
+    overflow:hidden;
+    padding: 7px 0px;
+    border-radius: 15px;
+}
+
+.view-date-result-time, .view-date-result-venue, .view-date-result-module {
+    display: inline-block;
+    font-size: 0.8em;
+}
+
+.view-date-result-module {
+    background-color: rgb(62, 93, 160);
+}
+.view-date-result-venue {
+    background-color: #5070B5;
+}
+.view-date-result-time {
+    background-color: rgb(114, 145, 211);
+}
+.view-date-result-module, .view-date-result-time, .view-date-result-venue {
+    padding: 0px 10px;
+    color: white;
+    margin: 0px 2px;
+}
+
+#picker-box {
+    text-align: center;
+}
+
+.picker-week {
+    margin-bottom: 5px;
+}
+.picker-day, .picker-day-label {
+    display: inline-block;
+    width: 12%;
+    background-color: white;
+    padding: 10% 0;
+    margin: 1px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.picker-day:hover{
+    background-color: #E5835C;
+    color: white;
+}
+
+.picker-day-label {
+    padding: 1% 0;
+    cursor: default;
 }
