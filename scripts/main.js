@@ -91,6 +91,7 @@ function handleExamttByDayResponse(day, response) {
             }
         }
     }
+    result.sort((a, b) => a[1] - b[1])
     populate_slots_dom(day, result)
 }
 
@@ -101,7 +102,6 @@ function populate_slots_dom(day, result) {
     slot_dom = document.getElementById("view-date-results");
     slot_dom.innerHTML = "";
     for (const i in result) {
-        console.log(result);
         slot_dom.appendChild(make_slot_dom(result[i]));
     }
 }
