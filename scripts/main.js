@@ -56,10 +56,14 @@ function pickDate(e) {
 
 function getExammttByDay(day) {
     url = api_base_url + "/slot?day="+day;
-    send_get(url, handleExamttByDayResponse)
+    send_get(url, makeExamttByDayResponseHandler(day))
 }
 
-function handleExamttByDayResponse(response) {
+function makeExamttByDayResponseHandler(day) {
+    return (response) => handleExamttByDayResponse(day, response);
+}
+
+function handleExamttByDayResponse(day, response) {
     if (response === "") return;
     stop_loader();
     json = JSON.parse(response);
@@ -67,11 +71,9 @@ function handleExamttByDayResponse(response) {
     venues = json.venues;
     result = [];
 
-    let day;
     for (const key in slots) {
         if (!slots.hasOwnProperty(key)) continue;
         const slot = slots[key];
-        day = slot.day;
         const time = slot.time;
         const slot_venues = slot.venues;
         for (const venue_id in slot_venues) {
