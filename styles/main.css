@@ -170,16 +170,16 @@ body {
 #loading-box {
     position: fixed;
     left: 50%;
-    margin-left: -20%;
+    margin-left: -15%;
     top: 50%;
-    margin-top: -20%;
+    margin-top: -15%;
 
-    width: 40%;
-    background-color: white;
+    width: 30%;
+    background-color: #ffd470;
     z-index: 9999;
 
-    box-shadow: 0 5px #ffd470;
-    border: #ffd470 solid 1px;
+    box-shadow: 0 5px #e7bd5b;
+    border: #e7bd5b solid 1px;
 }
 
 #loading-text {
@@ -187,7 +187,12 @@ body {
     text-align: center;
 }
 
+#loading-text h1 {
+    color: white;
+}
+
 #loading-animation {
+    margin-left: 10px;
     text-align: center;
 }
 
