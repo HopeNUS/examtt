@@ -267,3 +267,12 @@ body {
     padding: 1% 0;
     cursor: default;
 }
+
+#examtt-lifegroup {
+    width: 60%;
+    margin-bottom: 20px;
+}
+
+#examtt-lifegroup select {
+    padding: 10px;
+}

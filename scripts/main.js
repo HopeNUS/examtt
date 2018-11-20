@@ -159,17 +159,18 @@ function processForm(e) {
     if (e.preventDefault) e.preventDefault();
     form = e.target;
     examtt_str = form.elements['examtt-textarea'].value;
-    send_examtt(examtt_str)
+    lifegroup = form.elements['examtt-lifegroup'].value;
+    send_examtt(examtt_str, lifegroup)
     return false;
 }
 
-function parse_examtt_str(examtt_str) {
-    return {"examtt": examtt_str};
+function parse_examtt_str(examtt_str, lifegroup) {
+    return {"examtt": examtt_str, "lifegroup": lifegroup};
 }
 
-function send_examtt(examtt_str) {
-    parsed_examtt = parse_examtt_str(examtt_str)
-    url = api_base_url + "/parse/myaces"
+function send_examtt(examtt_str, lifegroup) {
+    parsed_examtt = parse_examtt_str(examtt_str, lifegroup);
+    url = api_base_url + "/parse/myaces";
     send_json(url, JSON.stringify(parsed_examtt));
 }
 
