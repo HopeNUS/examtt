@@ -216,6 +216,7 @@ body {
     overflow:hidden;
     padding: 7px 0px;
     border-radius: 15px;
+    margin-bottom: 4px;
 }
 
 .view-date-result-time, .view-date-result-venue, .view-date-result-module {

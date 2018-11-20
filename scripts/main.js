@@ -28,7 +28,7 @@ function listenToOverlay() {
 }
 
 function listenToDatePicker() {
-    const view_date_day = document.getElementById("view-date-day");
+    const view_date_day = document.getElementById("view-date-controller");
     view_date_day.addEventListener("click", open_date_picker);
 
     const datePickers = document.getElementsByClassName("picker-day");
@@ -86,7 +86,8 @@ function handleExamttByDayResponse(day, response) {
                 for (const i in students_module) {
                     if (!students_module.hasOwnProperty(i)) continue;
                     student = students_module[i];
-                    result.push([day, time, venue, module_code, student]);
+                    console.log(student);
+                    result.push([day, time, venue, module_code, student.name]);
                 }
             }
         }
