@@ -4,9 +4,9 @@ LOADER = null;
 DATE_PICKER = null
 
 window.onload = function() {
-    main();
     LOADER = document.getElementById("loading");
     DATE_PICKER = document.getElementById("date-picker");
+    main();
 }
 
 function play_loader() {
@@ -20,6 +20,7 @@ function main() {
     listenToOverlay();
     listenToExamttForm();
     listenToDatePicker();
+    loadLifegroup();
 }
 
 function listenToOverlay() {
@@ -52,6 +53,30 @@ function pickDate(e) {
     const day = date + month;
     close_date_picker();
     getExammttByDay(day);
+}
+
+function loadLifegroup() {
+    url = api_base_url + "/lgs";
+    send_get(url, (response)=> {
+        if (response === "") return;
+        stop_loader();
+        populateLg(JSON.parse(response));
+    })
+}
+
+function populateLg(lgs) {
+    /**
+     * <option value="A1">A1</option>
+     */
+    lifegroup_select = document.getElementById("examtt-lifegroup");
+    for (const i in lgs) {
+        lg = lgs[i];
+        lg_dom = document.createElement("option");
+        lg_dom.value = lg;
+        lg_dom.innerHTML = lg;
+        lifegroup_select.appendChild(lg_dom);
+    }
+
 }
 
 function getExammttByDay(day) {
@@ -170,6 +195,7 @@ function parse_examtt_str(examtt_str, lifegroup) {
 
 function send_examtt(examtt_str, lifegroup) {
     parsed_examtt = parse_examtt_str(examtt_str, lifegroup);
+    console.log(parsed_examtt);
     url = api_base_url + "/parse/myaces";
     send_json(url, JSON.stringify(parsed_examtt));
 }
