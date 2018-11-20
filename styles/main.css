@@ -219,13 +219,11 @@ body {
     margin-bottom: 4px;
 }
 
-.view-date-result-time, .view-date-result-venue, .view-date-result-module {
-    display: inline-block;
-    font-size: 0.8em;
+.view-date-result-lg {
+    background-color: #3caf9a;
 }
-
 .view-date-result-module {
-    background-color: rgb(62, 93, 160);
+    background-color: rgb(37, 133, 115);
 }
 .view-date-result-venue {
     background-color: #5070B5;
@@ -233,7 +231,9 @@ body {
 .view-date-result-time {
     background-color: rgb(114, 145, 211);
 }
-.view-date-result-module, .view-date-result-time, .view-date-result-venue {
+.view-date-result-module, .view-date-result-time, .view-date-result-venue, .view-date-result-lg {
+    display: inline-block;
+    font-size: 0.8em;
     padding: 0px 10px;
     color: white;
     margin: 0px 2px;

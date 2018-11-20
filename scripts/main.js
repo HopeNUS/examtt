@@ -112,12 +112,18 @@ function handleExamttByDayResponse(day, response) {
                     if (!students_module.hasOwnProperty(i)) continue;
                     student = students_module[i];
                     console.log(student);
-                    result.push([day, time, venue, module_code, student.name]);
+                    result.push([day, time, venue, module_code, student.name, student.lifegroup]);
                 }
             }
         }
     }
-    result.sort((a, b) => a[1] - b[1])
+    result.sort((a, b) => {
+        const timea = parseInt(a[1]); const timeb = parseInt(b[1]);
+        if (timea != timeb) return timea - timeb;
+        const venuea = a[2]; const venueb = b[2];
+        console.log(venuea, venueb, venuea.localeCompare(venueb));
+        return venuea.localeCompare(venueb);
+    })
     populate_slots_dom(day, result)
 }
 
@@ -147,6 +153,10 @@ function make_slot_dom(slot) {
     const view_date_result_name = document.createElement("div");
     view_date_result_name.classList.add("view-date-result-name");
     view_date_result_name.innerHTML = slot[4];
+    // Lifegroup
+    const view_date_result_lg = document.createElement("div");
+    view_date_result_lg.classList.add("view-date-result-lg");
+    view_date_result_lg.innerHTML = slot[5];
     // Time
     const view_date_result_time = document.createElement("div");
     view_date_result_time.classList.add("view-date-result-time");
@@ -164,6 +174,8 @@ function make_slot_dom(slot) {
     view_date_result_badges.classList.add("view-date-result-badges");
     view_date_result_badges.appendChild(view_date_result_time);
     view_date_result_badges.appendChild(view_date_result_venue);
+    view_date_result_badges.appendChild(document.createElement("br"));
+    view_date_result_badges.appendChild(view_date_result_lg);
     view_date_result_badges.appendChild(view_date_result_module);
     // Result
     const view_date_result = document.createElement("div");
