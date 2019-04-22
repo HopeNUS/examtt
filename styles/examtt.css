@@ -1,0 +1,94 @@
+#examtt #input {
+    float: left;
+}
+
+#examtt #output {
+    float: right;
+}
+
+#examtt .textarea {
+    width: 49.5%;
+    height: 300px;
+}
+
+#examtt .textarea textarea {
+    border: none;
+    border-top: 1px solid #EEE;
+    border-right: 8px solid #EEE;
+    padding-left: 3%;
+    padding-top: 10px;
+    width: 95%;
+    height: 300px;
+    display: inline-block;
+}
+
+#examtt .textarea textarea {
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    resize: none; /*remove the resize handle on the bottom right*/
+}
+
+#examtt #output #verification .module {
+    margin: 0px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    width: 55%;
+    margin-left: 10px;
+    background-color: #F6F6F6;
+    border-left: 20px solid #ffca00;
+    color: black;
+    text-align: right;
+}
+
+#examtt #output #verification .module.success {
+    border-left: 20px solid #8cff00e2;
+}
+
+#examtt #output #verification .module.failure {
+    border-left: 20px solid #fc5252db;
+}
+
+#examtt #output #verification .cell {
+    display: inline-block;
+    border-right: 1px solid #333;
+    padding: 0 10px;
+    margin: 0px 5px;
+}
+
+#examtt #output #submit {
+    width: 100px;
+    border-radius: 10px;
+    margin-left: 10px;
+    text-align: center;
+    padding: 5px 0px;
+    border: 3px solid #EEE;
+    color: #EEE;
+    background-color: white;
+}
+
+#examtt #output #submit.valid {
+    width: 100px;
+    border-radius: 10px;
+    margin-left: 10px;
+    text-align: center;
+    padding: 5px 0px;
+    border: 3px solid #ffca00;
+    cursor: pointer;
+    background-color: white;
+    color: #937e2a;
+    transition: background-color 0.1s linear;
+}
+
+#examtt #output #submit.valid:hover {
+    background-color: #ffca00;
+    color: #937e2a;
+}
+
+#examtt #output #submit.valid:active {
+    background-color: white;
+}

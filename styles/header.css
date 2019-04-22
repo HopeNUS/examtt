@@ -1,0 +1,15 @@
+header {
+    width: 100%;
+    background-color: #ffca00;
+    font-family: 'Open Sans', sans-serif;
+    color: #937e2a;
+    margin: 0;
+    padding: 20px 0;
+    font-size: 13px;
+}
+
+header #title{
+    display: inline-block;
+    text-align: center;
+    width:100%
+}

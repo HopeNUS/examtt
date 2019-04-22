@@ -1,0 +1,11 @@
+#instruction {
+    padding-right: 30px;
+}
+
+#instruction ol {
+    padding: 0 0 0 53px;
+}
+
+#instruction ol li {
+    margin-bottom: 5px;
+}

@@ -3,6 +3,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HopeNUS Examtt</title>
+
+<!-- Favicon -->
 <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
@@ -10,128 +12,91 @@
 <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="styles/main.css">
-<link rel="stylesheet" type="text/css" href="styles/loader.css">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+<!-- Style -->
+<link href="styles/main.css" rel="stylesheet">
+<link href="styles/header.css" rel="stylesheet">
+<link href="styles/instructions.css" rel="stylesheet">
+<link href="styles/nameLifegroup.css" rel="stylesheet">
+<link href="styles/examtt.css" rel="stylesheet">
+<link href="styles/homeLoading.css" rel="stylesheet">
+
 </head>
 
 <body>
-    <div id = 'loading' class='overlay hidden'>
-        <div id = 'loading-overlay' class='overlay-bg'></div>
-        <div id = 'loading-box' class='overlay-box'>
-            <div id = 'loading-text'><h1>Loading...</h1></div>
-            <div id = 'loading-animation'>
-                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-            </div>
-        </div>
+    <!-- Home Loading Screen -->
+    <div id = "homeLoading">
+        <h1> Hope NUS Exam Timetable </h1>
+        <p>Loading...</p>
     </div>
-    <div id = 'date-picker' class='overlay hidden'>
-            <div id = 'picker-overlay' class='overlay-bg'></div>
-            <div id = 'picker-box' class='overlay-box'>
-                <h1>Pick-a-date</h1>
-                <div class = 'picker-week'>
-                    <div class = 'picker-day-label'>SAT</div>
-                    <div class = 'picker-day-label'>SUN</div>
-                    <div class = 'picker-day-label'>MON</div>
-                    <div class = 'picker-day-label'>TUE</div>
-                    <div class = 'picker-day-label'>WED</div>
-                    <div class = 'picker-day-label'>THU</div>
-                    <div class = 'picker-day-label'>FRI</div>
-                </div>
-                <div class = 'picker-week'>
-                    <div class = 'picker-day'>24</div>
-                    <div class = 'picker-day'>25</div>
-                    <div class = 'picker-day'>26</div>
-                    <div class = 'picker-day'>27</div>
-                    <div class = 'picker-day'>28</div>
-                    <div class = 'picker-day'>29</div>
-                    <div class = 'picker-day'>30</div>
-                </div>
-                <div class = 'picker-week'></div>
-                    <div class = 'picker-day'>01</div>
-                    <div class = 'picker-day'>02</div>
-                    <div class = 'picker-day'>03</div>
-                    <div class = 'picker-day'>04</div>
-                    <div class = 'picker-day'>05</div>
-                    <div class = 'picker-day'>06</div>
-                    <div class = 'picker-day'>07</div>
-            </div>
-        </div>
-    <div id = 'container'>
-        <div id = 'header'>
-            <center><h1>Hope NUS Examtt</h1></center>
-        </div>
-        <div id = 'body'>
-            <div class = 'section' id = 'user-guide'>
-                <h2>User Guide</h2>
-                <div id = 'step-container'>
-                    <div class = 'step'>
-                        <p>1. Go to <a href="https://myaces.nus.edu.sg/examtt" target="_blank">myaces</a> and log in.</p>
-                    </div>
-                    <div class = 'step'>
-                        <p>2. Copy the whole page <br/><i>(Mobile: select all + copy)</i><br/><i>(Desktop: ctrl/cmd + a,<br/>ctrl/cmd + c)</i></p>
-                    </div>
-                    <div class = 'step'>
-                        <p>3. Paste below and submit</p>
-                    </div>
-                </div>
-            </div>
-            <div class = 'section hidden' id = 'examtt-viewer'>
-                <h2>Successfully Added!</h2>
-                <div id = 'examtt-confirmation'>
-                    <div id = 'examtt-confirmation-count'>
-                        <h3>Hey <span id='examtt-confirmation-name'>Jeremiah Ang Yong En</span>!<br/>
-                            I've detected <span id='examtt-confirmation-number'>3</span> modules</h3>
-                    </div>
-                    <div id = 'examtt-confirmation-modules'>
-                        <div class = 'examtt-module'>CS4234</div>
-                        <div class = 'examtt-module'>CS4226</div>
-                        <div class = 'examtt-module'>CS4231</div>
-                    </div>
-                </div>
-            </div>
-            <div class = 'section' id = 'entry-form'>
-                <h2>Enter Here</h2>
-                <div id = 'form-area'>
-                    <form action="/api/examtt/parse" name='examtt' id='examtt-input-form'>
-                        <label><b>Select LG: </b></label>
-                        <select id = 'examtt-lifegroup' name = 'examtt-lifegroup'>
-                        </select>
-                        <textarea id = 'examtt-textarea' name = 'examtt-textarea'></textarea>
-                        <br/>
-                        <input type='submit' id='examtt-submit'/>
-                    </form>
-                </div>
-            </div>
-            <div class = 'section' id = 'download-csv'>
-                <a href="https://jeremiahang.pythonanywhere.com/api/examtt/csv">
-                    <div id='download-csv-button'>Download CSV</div>
-                </a>
-            </div>
-            <div class = 'section' id = 'view-date'>
-                <div id = 'view-date-controller'>
-                    <h2 id='view-date-day'>NO DATE CHOSE</h2><br/>
-                    <span><i>Click to change date<br/>(Give it a try!)</i></span>
-                </div>
-                <div id = 'view-date-results'>
-                    
-                </div>
-            </div>
-        </div>
-        <div id = 'footer'></div>
-    </div>
-</div>
 
-<script type='text/javascript' src="scripts/main.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122498528-2"></script>
+    <!-- Main Body -->
+    <div id='main'>
+        <header>
+            <div id="title">
+                Hope NUS Exam Timetable
+            </div>
+        </header>
+        <section>
+            <div id="instruction">
+                <h3>Instruction</h3>
+                <p>
+                    <ol>
+                        <li>Enter your name & lifegroup</a></li>
+                        <li>Go to <a href="https://myedurec.nus.edu.sg" target="_blank">https://myedurec.nus.edu.sg</a></li>
+                        <li>Navigate to academics > examination > timetable</li>
+                        <li>copy and paste the whole page below</li>
+                    </ol>
+                </p>
+            </div>
+            <div id="name-lifegroup">
+                <div id="name" class="input-field">
+                    <h3>Name</h3>
+                    <input id='name-field' class='field' type='text' placeholder="Your Name Here"/>
+                </div>
+                <div id="lifegroup" class="input-field">
+                    <h3>Lifegroup</h3>
+                    <select id='lifegroups' class='field'>
+                        <option disabled selected> Select LG</option>
+                    </select>
+                </div>
+            </div>
+            <div id="examtt">
+                <div id="input" class="textarea">
+                    <h3>Paste Here:</h3>
+                    <textarea id="examtt-textarea"></textarea>
+                </div>
+                <div id="output" class="textarea">
+                    <h3>Verify:</h3>
+                    <div id="verification">
+                    </div>
+                    <div id="submit">
+                        Submit
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+<script type='text/javascript' src="scripts/examTtExtractor.js"></script>
+<script type='text/javascript' src="scripts/apiUrls.js"></script>
+<script type='text/javascript' src="scripts/http.js"></script>
+<script type='text/javascript' src="scripts/homeScreen.js"></script>
+<script type='text/javascript' src="scripts/preview.js"></script>
+<script type='text/javascript' src="scripts/addExamTt.js"></script>
+<script type='text/javascript' src="scripts/examttParser.js"></script>
+
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-122498528-2');
+window.onload = function() {
+    loadHomeScreen();
+    // showPreview(extractExamTtModules(str));
+    listenToTextarea();
+    listenToInputs();
+}
 </script>
-
 </body>
 </html>

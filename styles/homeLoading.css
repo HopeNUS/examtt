@@ -1,0 +1,25 @@
+#homeLoading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffca00;
+    font-family: 'Ubuntu Mono', monospace;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+#homeLoading h1 {
+    display: inline-block;
+    padding: 100px;
+    background-color: white;
+    margin-top: 30vh;
+}
+
+#homeLoading.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.2s, opacity 0.2s linear;
+}

@@ -1,0 +1,37 @@
+#name-lifegroup{
+    background-color: #F6F6F6;
+}
+
+#name-lifegroup .input-field {
+    display: inline-block;
+}
+
+#name-lifegroup .input-field .field
+{
+    margin-left: 30px;
+    padding: 0px;
+    border: 0px;
+    font-size: 16px;
+    font-family: 'Ubuntu Mono', monospace;
+    color: black;
+    background-color: rgba(0,0,0,0);
+
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+#name-lifegroup .input-field input
+{
+    width: 250px;
+    background-color: none;
+    margin-bottom: 15px;
+}
+
+#name-lifegroup .input-field select
+{
+    width: 100px;
+    background-color: none;
+    margin-bottom: 15px;
+}

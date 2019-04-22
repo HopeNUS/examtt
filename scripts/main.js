@@ -56,7 +56,7 @@ function pickDate(e) {
 }
 
 function loadLifegroup() {
-    url = api_base_url + "/lgs";
+    url = getLifegroupUrl();
     send_get(url, (response)=> {
         if (response === "") return;
         stop_loader();
@@ -80,8 +80,8 @@ function populateLg(lgs) {
 }
 
 function getExammttByDay(day) {
-    url = api_base_url + "/slot?day="+day;
-    send_get(url, makeExamttByDayResponseHandler(day))
+    // url = api_base_url + "/slot?day="+day;
+    // send_get(url, makeExamttByDayResponseHandler(day))
 }
 
 function makeExamttByDayResponseHandler(day) {
@@ -206,35 +206,14 @@ function parse_examtt_str(examtt_str, lifegroup) {
 }
 
 function send_examtt(examtt_str, lifegroup) {
-    parsed_examtt = parse_examtt_str(examtt_str, lifegroup);
-    console.log(parsed_examtt);
-    url = api_base_url + "/parse/myaces";
-    send_json(url, JSON.stringify(parsed_examtt));
+    // parsed_examtt = parse_examtt_str(examtt_str, lifegroup);
+    // console.log(parsed_examtt);
+    // url = api_base_url + "/parse/myaces";
+    // send_json(url, JSON.stringify(parsed_examtt));
 }
 
-function send_get(url, callback) {
-    play_loader()
-    const Http = new XMLHttpRequest();
-    Http.open("GET", url);
-    Http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    Http.send();
-    Http.onreadystatechange = (e) => {
-        if (Http.readyState === 4)
-            callback(Http.responseText)
-    }
-}
 
-function send_json(url, json) {
-    play_loader()
-    const Http = new XMLHttpRequest();
-    Http.open("POST", url);
-    Http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    Http.send(json);
-    Http.onreadystatechange = (e) => {
-        if (Http.readyState === 4)
-            update_confirmation(Http.responseText)
-    }
-}
+
 
 function update_confirmation(msg) {
     if (msg === "") return;
