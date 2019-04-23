@@ -13,6 +13,8 @@ let inputs = {
 
 function setModules(_modules) {
     modules = _modules;
+    inputs.modules = modules != null && modules.length > 0;
+    inputsOnChange()
 }
 
 function allInputsValid() {
@@ -54,16 +56,12 @@ function listenToInputs() {
     submitButton.addEventListener("click", submitOnClick);
     nameField = document.getElementById(ID_NAME_FILED);
     lifegroupField = document.getElementById(ID_LIFEGROUP_FIELD);
-    nameField.addEventListener("keyup input paste", (e)=>{
+    nameField.addEventListener("keyup", (e)=>{
         inputs.name = e.target.value !== "";
         inputsOnChange()
     });
     lifegroupField.addEventListener("change", (e)=>{
         inputs.lifegroup = e.target.value !== "";
-        inputsOnChange()
-    });
-    document.getElementById(ID_TEXTAREA_FIELD).addEventListener("keyup input paste", (e)=>{
-        inputs.modules = (modules != null) && modules.length > 0;
         inputsOnChange()
     });
 }
