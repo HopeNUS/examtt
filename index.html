@@ -89,10 +89,11 @@
 <script type='text/javascript' src="scripts/preview.js"></script>
 <script type='text/javascript' src="scripts/addExamTt.js"></script>
 <script type='text/javascript' src="scripts/examttParser.js"></script>
+<script type='text/javascript' src="scripts/lifegroups.js"></script>
 
 <script>
 window.onload = function() {
-    loadHomeScreen();
+    getAndPopulateLifegroup(closeHomeScreen);
     // showPreview(extractExamTtModules(str));
     listenToTextarea();
     listenToInputs();

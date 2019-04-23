@@ -1,0 +1,132 @@
+#prayer-table {
+ width: 100%;
+ background-color: #F9F9F9;
+}
+
+#prayer-table h3 {
+    padding: 0px;
+    display: inline-block;
+    margin: 0px;
+}
+#prayer-table .date h3, #prayer-table .time h3 {
+    margin: 0px;
+    margin-right: 10px;
+    display: inline-block;
+}
+#prayer-table .date {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color:white;
+    border-bottom: #EEE solid 1px;
+}
+
+#prayer-table .time-location {
+    width: 100%;
+}
+
+#prayer-table .time-location .time {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: white
+}
+
+#prayer-table .time-location .row {
+    background-color: #F6F6F6;
+    overflow-x: auto;
+    padding: 0px;
+}
+
+#prayer-table .time-location table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+#prayer-table .time-location table:last-of-type {
+    border-bottom: none;
+}
+
+#prayer-table.student-only .time-location table td.prayer-warriors {
+    display: none;
+}
+
+#prayer-table .time-location table td.prayer-warriors {
+    width: 30%;
+    min-width: 200px;
+    border-bottom: #F0F0F0 solid 1px;
+}
+
+#prayer-table .time-location table td.location {
+    text-align: center;
+    width: 20%;
+    min-width: 100px;
+    background-color:#E2E2E2;
+    border-top:#E2E2E2 solid 1px;
+}
+
+#prayer-table .time-location table:nth-child(even) td.location {
+    background-color:#EEE;
+    border-top:none;
+}
+
+#prayer-table .time-location table td.students {
+    width: 100%;
+    min-width: 250px;
+}
+
+#prayer-table .time-location table td.students .student {
+    width: 90%;
+    padding: 5px;
+    padding-left: 20px;
+    margin: 10px 0px;
+    border-bottom: #F0F0F0 solid 1px;
+}
+
+#prayer-table .time-location table td.students .student:first-of-type {
+    margin-top: -1px;
+    padding-top: 15px;
+    border-top: #F0F0F0 solid 1px;
+}
+#prayer-table .time-location table td.students .student:last-of-type {
+    margin-bottom: 0px;
+    border-bottom: none;
+}
+
+#prayer-table .time-location table td.students .student .student-detail {
+    width: 60%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 5px;
+}
+#prayer-table .time-location table td.students .student .student-detail.name {
+    width: 65%;
+    text-align: left;
+}
+#prayer-table .time-location table td.students .student .student-detail.lifegroup {
+    width: 20%;
+    text-align: center;
+    background-color: #F0F0F0;
+    color: #999999;
+}
+
+#prayer-table .time-location table td.prayer-warriors .prayer-warrior {
+    text-align: center;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
+#prayer-table .time-location table.header td.field {
+    text-align: center;
+    background-color: #EEE;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-weight: bold;
+    border-top:none;
+}
+#prayer-table .time-location table.header td.field:nth-child(even) {
+    text-align: center;
+    background-color: #E2E2E2;
+}

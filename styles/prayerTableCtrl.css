@@ -1,0 +1,56 @@
+nav {
+    border-bottom: #EEE solid 1px;
+}
+
+nav .ctrl {
+    width: 49%;
+    margin: 0px;
+    padding: 10px 0;
+    display: inline-block;
+    text-align: center;
+}
+
+nav .ctrl h3 {
+    margin: 0;
+    padding: 5px;
+    max-width: 200px;
+    
+    display: inline-block;
+    border-radius: 10px;
+    width: 80%;
+    background-color: white;
+    transition: background-color 0.1s linear;
+    cursor: pointer;
+}
+
+nav .ctrl#prayer-warrior-ctrl h3 {
+    border: 3px solid rgb(103, 151, 255);
+    color: rgb(103, 151, 255);
+    background-color: white;
+}
+
+nav .ctrl#prayer-warrior-ctrl h3:hover {
+    background-color: rgb(103, 151, 255);
+    color:white;
+}
+
+nav .ctrl#prayer-warrior-ctrl h3:active {
+    background-color: white;
+    color: rgb(103, 151, 255);
+}
+
+nav .ctrl#date-picker-ctrl h3 {
+    border: 3px solid rgb(255, 144, 122);
+    color: rgb(255, 144, 122);
+    background-color: white;
+}
+
+nav .ctrl#date-picker-ctrl h3:hover {
+    background-color: rgb(255, 144, 122);
+    color: white;
+}
+
+nav .ctrl#date-picker-ctrl h3:active {
+    background-color: white;
+    color: rgb(255, 144, 122);
+}
