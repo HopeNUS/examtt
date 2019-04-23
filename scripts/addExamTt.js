@@ -62,7 +62,7 @@ function listenToInputs() {
         inputs.lifegroup = e.target.value !== "";
         inputsOnChange()
     });
-    document.getElementById(ID_TEXTAREA_FIELD).addEventListener("keyup", (e)=>{
+    document.getElementById(ID_TEXTAREA_FIELD).addEventListener("keyup input paste", (e)=>{
         inputs.modules = modules.length > 0;
         inputsOnChange()
     });
