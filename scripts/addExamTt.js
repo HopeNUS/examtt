@@ -54,7 +54,7 @@ function listenToInputs() {
     submitButton.addEventListener("click", submitOnClick);
     nameField = document.getElementById(ID_NAME_FILED);
     lifegroupField = document.getElementById(ID_LIFEGROUP_FIELD);
-    nameField.addEventListener("keyup", (e)=>{
+    nameField.addEventListener("keyup input", (e)=>{
         inputs.name = e.target.value !== "";
         inputsOnChange()
     });
