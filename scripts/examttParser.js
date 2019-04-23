@@ -8,5 +8,5 @@ function onExamTtTextareaChange(e) {
 
 function listenToTextarea() {
     textAreaDom = document.getElementById(ID_TEXTAREA);
-    textAreaDom.addEventListener("keyup input", onExamTtTextareaChange)
+    textAreaDom.addEventListener("keyup input paste", onExamTtTextareaChange)
 }
