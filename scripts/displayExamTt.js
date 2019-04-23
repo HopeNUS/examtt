@@ -23,7 +23,7 @@ function getAndDisplayExamTt(date, month, callback) {
                 examTtResponse.exams,
                 prayerSlotResponse.prayerSlots,
                 prayerSlotResponse.prayerSlotsWarriors);
-            callback();
+                callback();
         });
     });
 }
@@ -72,7 +72,7 @@ function populateWarriorDom(warriorsDom, warriors) {
     warriors.forEach(warrior => {
         warriorDom = document.createElement("div");
         warriorDom.classList.add("prayer-warrior");
-        warriorDom.innerHTML = warrior;
+        warriorDom.innerHTML = `<span>${warrior}</span><span class = 'warrior-del-ctrl'>x</span>`;
         warriorsDom.appendChild(warriorDom);
     });
 }
@@ -204,5 +204,6 @@ function displayExamTt(date, students, exams, prayerSlots, warriors) {
     const psTimes = makeWarriorInfo(prayerSlots, warriors);
     let prayerTableDom = document.getElementById(ID_PRAYER_TABLE);
     const slotDom = makeSlotDom(date, times, psTimes);
+    prayerTableDom.innerHTML = "";
     prayerTableDom.appendChild(slotDom);
 }

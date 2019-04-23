@@ -23,6 +23,8 @@
 <link href="../styles/homeLoading.css" rel="stylesheet">
 <link href="../styles/prayerTable.css" rel="stylesheet">
 <link href="../styles/prayerTableCtrl.css" rel="stylesheet">
+<link href="../styles/loading.css" rel="stylesheet">
+<link href="../styles/warriorName.css" rel="stylesheet">
 
 </head>
 
@@ -33,6 +35,14 @@
         <p>Loading...</p>
     </div>
 
+    <!-- General Screen -->
+    <div id = "loading" class = "hidden">
+        <div id = "loading-center">
+            <h3>Loading...</h3>
+        </div>
+    </div>
+
+
     <!-- Main Body -->
     <div id='main'>
         <header>
@@ -42,9 +52,31 @@
         </header>
         <nav>
             <div class="ctrl" id="prayer-warrior-ctrl"><h3>Prayer Warriors</h3></div>
-            <div class="ctrl" id="date-picker-ctrl"><h3>Change Date</h3></div>
+            <div class="ctrl" id="date-picker-ctrl">
+                <select id="date-picker">
+                    <option value="" selected disabled>Select Date</option>
+                    <option value="27APR">27 APR (SAT)</option>
+                    <option value="28APR">28 APR (SUN)</option>
+                    <option value="29APR">29 APR (MON)</option>
+                    <option value="30APR">30 APR (TUE)</option>
+                    <option value="01MAY">01 MAY (WED)</option>
+                    <option value="02MAY">02 MAY (THU)</option>
+                    <option value="03MAY">03 MAY (FRI)</option>
+                    <option value="04MAY">04 MAY (SAT)</option>
+                    <option value="05MAY">05 MAY (SUN)</option>
+                    <option value="06MAY">06 MAY (MON)</option>
+                    <option value="07MAY">07 MAY (TUE)</option>
+                    <option value="08MAY">08 MAY (WED)</option>
+                    <option value="09MAY">09 MAY (THU)</option>
+                    <option value="10MAY">10 MAY (FRI)</option>
+                </select>
+            </div>
         </nav>
         <section>
+            <div id = 'prayer-warrior-name' class="student-only">
+                <h3>Warrior Name</h3>
+                <input type = "text" id = "warrior-name" placeholder="Enter Your Name"/>
+            </div>
             <div id = 'prayer-table' class="student-only">
                 
             </div>
@@ -54,14 +86,17 @@
 <script type='text/javascript' src="../scripts/apiUrls.js"></script>
 <script type='text/javascript' src="../scripts/http.js"></script>
 <script type='text/javascript' src="../scripts/homeScreen.js"></script>
+<script type='text/javascript' src="../scripts/loading.js"></script>
 <script type='text/javascript' src="../scripts/getExamTt.js"></script>
 <script type='text/javascript' src="../scripts/displayExamTt.js"></script>
 <script type='text/javascript' src="../scripts/prayerWarriorToggle.js"></script>
+<script type='text/javascript' src="../scripts/examTtDatePicker.js"></script>
 
 <script>
 window.onload = function() {
-    getAndDisplayExamTt("30", "APR", closeHomeScreen);
+    setupDatePicker();
     activatePrayerWarriorToggle();
+    closeHomeScreen();
 }   
 </script>
 </body>

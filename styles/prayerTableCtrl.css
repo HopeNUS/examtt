@@ -16,7 +16,7 @@ nav .ctrl h3 {
     max-width: 200px;
     
     display: inline-block;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 80%;
     background-color: white;
     transition: background-color 0.1s linear;
@@ -39,18 +39,19 @@ nav .ctrl#prayer-warrior-ctrl h3:active {
     color: rgb(103, 151, 255);
 }
 
-nav .ctrl#date-picker-ctrl h3 {
+nav .ctrl#date-picker-ctrl select#date-picker {
+    width: 80%;
+    text-align: center;
+    text-align-last: center;
     border: 3px solid rgb(255, 144, 122);
     color: rgb(255, 144, 122);
+    height: 29px;
+    max-width: 200px;
     background-color: white;
-}
-
-nav .ctrl#date-picker-ctrl h3:hover {
-    background-color: rgb(255, 144, 122);
-    color: white;
-}
-
-nav .ctrl#date-picker-ctrl h3:active {
-    background-color: white;
-    color: rgb(255, 144, 122);
+    outline: none;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: normal;
 }
