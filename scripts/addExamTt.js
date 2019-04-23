@@ -63,7 +63,7 @@ function listenToInputs() {
         inputsOnChange()
     });
     document.getElementById(ID_TEXTAREA_FIELD).addEventListener("keyup input paste", (e)=>{
-        inputs.modules = modules.length > 0;
+        inputs.modules = (modules != null) && modules.length > 0;
         inputsOnChange()
     });
 }
