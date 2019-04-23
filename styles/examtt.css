@@ -72,6 +72,11 @@
     background-color: white;
 }
 
+#examtt #output #submit h3 {
+    margin: 0;
+    padding: 0;
+}
+
 #examtt #output #submit.valid {
     width: 100px;
     border-radius: 10px;
