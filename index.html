@@ -24,6 +24,7 @@
 <link href="styles/nameLifegroup.css" rel="stylesheet">
 <link href="styles/examtt.css" rel="stylesheet">
 <link href="styles/homeLoading.css" rel="stylesheet">
+<link href="styles/loading.css" rel="stylesheet">
 
 </head>
 
@@ -32,6 +33,14 @@
     <div id = "homeLoading">
         <h1> Hope NUS Exam Timetable </h1>
         <p>Loading...</p>
+    </div>
+
+
+    <!-- General Screen -->
+    <div id = "loading" class = "hidden">
+        <div id = "loading-center">
+            <h3>Loading...</h3>
+        </div>
     </div>
 
     <!-- Main Body -->
@@ -54,7 +63,7 @@
                         <li>Verify the information</li>
                         <li>Click submit and everything should turn green</li>
                         <li>Got issues? Report <a href="https://forms.gle/rMSTm2WfWUsZ4Z4i7" target="_blank">Here</a></li>
-                        <li>Done? Check out <a href="prayers/index.html" target="_blank">The HopeNUS exam schedule</a></li>
+                        <li>Done? Check out <a href="prayers/">The HopeNUS exam schedule</a></li>
                     </ol>
                 </p>
             </div>
@@ -91,6 +100,7 @@
 <script type='text/javascript' src="scripts/apiUrls.js"></script>
 <script type='text/javascript' src="scripts/http.js"></script>
 <script type='text/javascript' src="scripts/homeScreen.js"></script>
+<script type='text/javascript' src="../scripts/loading.js"></script>
 <script type='text/javascript' src="scripts/preview.js"></script>
 <script type='text/javascript' src="scripts/addExamTt.js"></script>
 <script type='text/javascript' src="scripts/examttParser.js"></script>

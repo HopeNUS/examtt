@@ -32,9 +32,11 @@ function sendAddStudentExam() {
     lifegroup = lifegroupField.value;
     jsonObj = {name, lifegroup, modules};
     jsonStr = JSON.stringify(jsonObj);
+    showLoading();
     send_json(getAddExamTtUrl(), jsonStr, res => {
         responseObj = JSON.parse(res);
         updatePreview(responseObj['successes'], responseObj['failures']);
+        hideLoading();
     });
     // updatePreview(["CS 4231-L1", "PC 1221-L1"], [])
 }

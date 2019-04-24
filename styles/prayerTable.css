@@ -74,6 +74,7 @@
 #prayer-table .time-location table td.students {
     width: 100%;
     min-width: 250px;
+    border-bottom: #F0F0F0 solid 1px;
 }
 
 #prayer-table .time-location table td.students .student {
@@ -87,7 +88,6 @@
 #prayer-table .time-location table td.students .student:first-of-type {
     margin-top: -1px;
     padding-top: 15px;
-    border-top: #F0F0F0 solid 1px;
 }
 #prayer-table .time-location table td.students .student:last-of-type {
     margin-bottom: 0px;
@@ -118,15 +118,13 @@
     margin-bottom: 5px;
 }
 
+#prayer-table .time-location table td.prayer-warriors .prayer-warrior:first-of-type {
+    margin-top: 20px;
+}
+
 #prayer-table .time-location table td.prayer-warriors span {
     display: inline-block;
     vertical-align: top;
-}
-
-#prayer-table .time-location table td.prayer-warriors .warrior-del-ctrl {
-    margin-left: 10px;
-    color: rgb(255, 144, 122);
-    display: inline-block;
 }
 
 

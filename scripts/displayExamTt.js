@@ -32,12 +32,15 @@ function makeExamTtInfo(students, exams) {
     let times = {}
     let examLocations = {};
     let examTimes = {};
+    let examPsIds = {};
     exams.forEach(exam => {
         const examLocation = exam.meetingPoint || exam.location;
         const examTime = exam.time;
         const examId = exam.id;
+        const examPsId = exam.prayerSlotId;
         examLocations[examId] = examLocation;
         examTimes[examId] = examTime;
+        examPsIds[examId] = examPsId;
     });
 
 
@@ -46,11 +49,13 @@ function makeExamTtInfo(students, exams) {
         exams.forEach(examId => {
             const examTime = examTimes[examId];
             const examLocation = examLocations[examId];
+            const examPsId = examPsIds[examId];
             if (!(examTime in times)) times[examTime] = {};
             if (!(examLocation in times[examTime])) times[examTime][examLocation] = [];
             times[examTime][examLocation].push({
                 name: student.name,
-                lifegroup: student.lifegroup
+                lifegroup: student.lifegroup,
+                prayerSlotId: examPsId
             });
         })
     });
@@ -65,16 +70,66 @@ function makeDateDom(date) {
     return dateDom;
 }
 
+function makeWarriorCtrlDomOnClick(warriorDom, psId, warriorName) {
+    return (e) => {
+        showLoading();
+        deletePrayerWarriorSubscription(psId, warriorName, (res) => {
+            warriorDom.parentNode.removeChild(warriorDom);
+            hideLoading();
+        });
+    }
+}
+
+function makeWarriorCtrlAddOnClick(warriorsDom, psId) {
+    return ()=>{
+        warriorName = getAddWarriorName().trim();
+        if (warriorName == "") {
+            alert("Please enter Your Name");
+            return;
+        }
+        showLoading();
+        addPrayerWarriorSubscription(psId, warriorName, (res) => {
+            console.log(res);
+            warriorDom = makeNewWarriorDom({psId, warriorName});
+            warriorsDom.insertBefore(warriorDom, warriorsDom.lastChild);
+            hideLoading();
+        })
+    };
+}
+
 function populateWarriorDom(warriorsDom, warriors) {
     /*
-    <div class = 'prayer-warrior'>Kah Hoe</div>
+    <div class = 'prayer-warrior'>Kah Hoe
+        <span class = 'warrior-del-ctrl'>x</span></div>
+    
+    <div class = 'warrior-add-ctrl'>+</div>
     */
     warriors.forEach(warrior => {
-        warriorDom = document.createElement("div");
-        warriorDom.classList.add("prayer-warrior");
-        warriorDom.innerHTML = `<span>${warrior}</span><span class = 'warrior-del-ctrl'>x</span>`;
+        warriorDom = makeNewWarriorDom(warrior);
         warriorsDom.appendChild(warriorDom);
+        psId = warrior.psId;
     });
+}
+
+function makeNewWarriorDom(warrior) {
+    let warriorDom = document.createElement("div");
+    warriorDom.classList.add("prayer-warrior");
+    let warriorCtrlDom = document.createElement("span");
+    warriorCtrlDom.classList.add("warrior-del-ctrl");
+    warriorCtrlDom.innerHTML = "x";
+    warriorCtrlDom.addEventListener("click", makeWarriorCtrlDomOnClick(warriorDom, warrior.psId, warrior.warriorName));
+    warriorDom.innerHTML = `<span>${warrior.warriorName}</span>`;
+    warriorDom.appendChild(warriorCtrlDom);
+    return warriorDom;
+}
+
+function populateWarriorDomAddCtrl(warriorsDom, psId) {
+    warriorAddCtrlDom = document.createElement("div");
+    warriorAddCtrlDom.classList.add("warrior-add-ctrl");
+    warriorAddCtrlDom.innerHTML="<span>+</span>";
+    warriorsDom.appendChild(warriorAddCtrlDom);
+    warriorAddCtrlDom.addEventListener(
+        "click", makeWarriorCtrlAddOnClick(warriorsDom, psId));
 }
 
 function populateLocationDom(locationDom, examLocation) {
@@ -82,6 +137,7 @@ function populateLocationDom(locationDom, examLocation) {
 }
 
 function populateStudentsDom(studentsDom, students) {
+    let psId = null;
     students.forEach(student => {
         let studentDom = document.createElement("div");
         studentDom.classList.add("student");
@@ -98,7 +154,9 @@ function populateStudentsDom(studentsDom, students) {
         studentDom.appendChild(nameDom);
         studentDom.appendChild(lifegroupDom);
         studentsDom.appendChild(studentDom);
+        psId = student.prayerSlotId;
     });
+    return psId;
 }
 
 function makeLocationStudentDom(examLocation, students, warriors) {
@@ -130,8 +188,9 @@ function makeLocationStudentDom(examLocation, students, warriors) {
 
     populateWarriorDom(prayerWarriorDom, warriors);
     populateLocationDom(locationDom, examLocation);
-    populateStudentsDom(studentsDom, students);
-
+    psId = populateStudentsDom(studentsDom, students);
+    populateWarriorDomAddCtrl(prayerWarriorDom, psId);
+    
     return tableDom;
 }
 
@@ -194,7 +253,7 @@ function makeWarriorInfo(prayerSlots, warriors) {
         const warriorName = psWarrior[1];
         const psTime = prayerSlotTime[psId];
         const psLocation = prayerSlotLocation[psId];
-        times[psTime][psLocation].push(warriorName);
+        times[psTime][psLocation].push({warriorName, psId});
     })
 
     return times;

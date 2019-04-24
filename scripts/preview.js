@@ -8,7 +8,6 @@ CLASS_CELL = "cell";
 let previewDom, codeToModuleDomMap = {};
 
 function updatePreview(successes, failures) {
-    console.log(successes, failures);
     successes.forEach(code => {
         moduleDom = codeToModuleDomMap[code];
         moduleDom.classList.add(CLASS_MODULE_SUCCESS);

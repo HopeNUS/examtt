@@ -1,0 +1,26 @@
+
+#prayer-table .time-location table td.prayer-warriors .warrior-del-ctrl {
+    margin-left: 10px;
+    color: rgb(255, 144, 122);
+    display: inline-block;
+    border: rgb(255, 144, 122) solid 2px;    
+    padding: 0 3px 2px;
+    line-height: 12px;
+    cursor: pointer;
+}
+
+#prayer-table .time-location table td.prayer-warriors .warrior-add-ctrl {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+}
+
+#prayer-table .time-location table td.prayer-warriors .warrior-add-ctrl span {
+    margin-left: 10px;
+    color: rgb(103, 151, 255);
+    display: inline-block;
+    border: rgb(103, 151, 255) solid 2px;    
+    padding: 0 3px 2px;
+    line-height: 12px;
+    cursor: pointer;
+}
