@@ -35,17 +35,17 @@ function makeExamTtInfo(students, exams) {
     exams.forEach(exam => {
         const examLocation = exam.meetingPoint || exam.location;
         const examTime = exam.time;
-        const moduleCode = exam.code;
-        examLocations[moduleCode] = examLocation;
-        examTimes[moduleCode] = examTime;
+        const examId = exam.id;
+        examLocations[examId] = examLocation;
+        examTimes[examId] = examTime;
     });
 
 
     students.forEach(student => {
-        const modules = student.module;
-        modules.forEach(moduleCode => {
-            const examTime = examTimes[moduleCode];
-            const examLocation = examLocations[moduleCode];
+        const exams = student.exam;
+        exams.forEach(examId => {
+            const examTime = examTimes[examId];
+            const examLocation = examLocations[examId];
             if (!(examTime in times)) times[examTime] = {};
             if (!(examLocation in times[examTime])) times[examTime][examLocation] = [];
             times[examTime][examLocation].push({
@@ -146,12 +146,13 @@ function makeTimeLocationDom(time, locations, psLocations) {
     let rowDom = document.createElement("div");
     rowDom.classList.add("row");
     rowDom.innerHTML = DOM_TABLE_HEADER;
-    for (const examLocation in locations) {
+    locationsKey = Object.keys(locations).sort();
+    locationsKey.forEach(examLocation => {
         students = locations[examLocation];
         warriors = psLocations[examLocation];
         tableDom = makeLocationStudentDom(examLocation, students, warriors);
         rowDom.appendChild(tableDom);
-    }
+    });
 
     timeLocDom.appendChild(rowDom);
     return timeLocDom;

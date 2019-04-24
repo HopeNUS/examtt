@@ -1,23 +1,26 @@
 nav {
     border-bottom: #EEE solid 1px;
+    display: table;
+    width: 100%;
 }
 
 nav .ctrl {
-    width: 49%;
+    width: 48%;
     margin: 0px;
     padding: 10px 0;
-    display: inline-block;
+    display: table-cell;
     text-align: center;
+    vertical-align: middle;
 }
 
 nav .ctrl h3 {
     margin: 0;
     padding: 5px;
+    min-width: 120px;
     max-width: 200px;
     
     display: inline-block;
-    border-radius: 5px;
-    width: 80%;
+    width: 60%;
     background-color: white;
     transition: background-color 0.1s linear;
     cursor: pointer;
@@ -40,12 +43,13 @@ nav .ctrl#prayer-warrior-ctrl h3:active {
 }
 
 nav .ctrl#date-picker-ctrl select#date-picker {
-    width: 80%;
+    width: 60%;
     text-align: center;
     text-align-last: center;
     border: 3px solid rgb(255, 144, 122);
     color: rgb(255, 144, 122);
     height: 29px;
+    min-width: 120px;
     max-width: 200px;
     background-color: white;
     outline: none;
@@ -54,4 +58,5 @@ nav .ctrl#date-picker-ctrl select#date-picker {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: normal;
+    border-radius: 0px;
 }
