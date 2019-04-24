@@ -1,4 +1,4 @@
-const regex = /((.+)\n.+\n.+\n.+\n([0-9]{2})-([0-9]{2})-.+\n([0-9]{1,2}):([0-9]{2}).+\n.+\n(.+)\n)/gm;
+const regex = /((.+)\n.+\n.+\n.+\n([0-9]{2})-([0-9]{2})-.+\n([0-9]{1,2}):([0-9]{2}).+\n.+\n(.+))/gm;
 const regexMobile = /(Class\s*(.+)\s.+\s*.+\s*.+\s*.+\s*.+\s*Exam Date\s*([0-9]{2})-([0-9]{2}).+\s*Schedule\s*([0-9]{1,2}):([0-9]{2}).+\s*.+\s*.+\s*Exam Venue\s*(.+)\s*)/gm;
 
 const months = ["INVALID", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
