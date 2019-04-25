@@ -1,4 +1,5 @@
 const regex = /((?<code>.+)\n.+\n.+\n.+\n(?<date>[0-9]{2})-(?<month>[0-9]{2})-.+\n(?<hour>[0-9]{1,2}):(?<minute>[0-9]{2}).+\n.+\n(?<venue>.+))/gm;
+const regexYYmmdd = /((?<code>.+)\n.+\n.+\n.+\n.+-(?<month>[0-9]{2})-(?<date>[0-9]{2})\n(?<hour>[0-9]{1,2}):(?<minute>[0-9]{2}).+\n.+\n(?<venue>.+))/gm;
 const regexMobile = /(Class\s*(?<code>.+)\s.+\s*.+\s*.+\s*.+\s*.+\s*Exam Date\s*(?<date>[0-9]{2})-(?<month>[0-9]{2}).+\s*Schedule\s*(?<hour>[0-9]{1,2}):(?<minute>[0-9]{2}).+\s*.+\s*.+\s*Exam Venue\s*(?<venue>.+)\s*)/gm;
 const regexByDate = /[A-Z]+ (?<month>[A-Z]{3}).*?(?<date>[0-9]{1,2})\s+(?<hour>[0-9]{1,2}):(?<minute>[0-9]{2}).+\s+(?<code>.+)\s+.+\s+VENUE:\s+(?<venue>.+)/gm;
 
@@ -19,7 +20,7 @@ function extractExamTtHour(hour) {
 
 function extractExamTtDate(date) {
     const dateNum = parseInt(date);
-    return (date < 10) ? "0" + date : "" + date;
+    return (date < 10) ? "0" + dateNum : "" + dateNum;
 }
 
 function extractExamTtModulesRegex(str, reg) {
@@ -49,6 +50,10 @@ function extractExamTtModulesDesktop(str) {
     return extractExamTtModulesRegex(str, regex);
 }
 
+function extractExamTtModulesYYmmddDesktop(str) {
+    return extractExamTtModulesRegex(str, regexYYmmdd);
+}
+
 function extractExamTtModulesMobile(str) {
     return extractExamTtModulesRegex(str, regexMobile);
 }
@@ -59,6 +64,8 @@ function extractExamTtModulesByDateDesktop(str) {
 
 function extractExamTtModules(str) {
     let modules = extractExamTtModulesDesktop(str);
+    if (modules.length > 0) return modules;
+    modules = extractExamTtModulesYYmmddDesktop(str);
     if (modules.length > 0) return modules;
     modules = extractExamTtModulesMobile(str);
     if (modules.length > 0) return modules;
