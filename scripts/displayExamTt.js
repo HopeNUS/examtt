@@ -223,12 +223,13 @@ function makeSlotDom(date, times, psTimes) {
     const dateDom = makeDateDom(date);
     slotDom.appendChild(dateDom);
 
-    for (const time in times) {
+    timesKey = Object.keys(times).sort();
+    timesKey.forEach(time => {
         const locations = times[time];
         const psLocations = psTimes[time];
         const timeLocDom = makeTimeLocationDom(time, locations, psLocations);
         slotDom.appendChild(timeLocDom);
-    }
+    });
     return slotDom;
 }
 
