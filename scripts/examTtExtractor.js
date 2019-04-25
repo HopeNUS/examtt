@@ -24,7 +24,6 @@ function extractExamTtDate(date) {
 }
 
 function extractExamTtModulesRegex(str, reg) {
-    console.log(str);
     let modules = [], m;
     while ((m = reg.exec(str)) !== null) {
         // This is necessary to avoid infinite loops with zero-width matches
