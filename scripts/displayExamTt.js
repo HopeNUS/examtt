@@ -29,7 +29,7 @@ function makeExamTtInfo(exams) {
     const times = {}
     exams.forEach(exam => {
         const examTime = exam['datetime'].substr(11, 5);
-        const examLocation = exam['place'];
+        const examLocation = MEETING_POINT[exam['place']];
         const examPsId = exam['exam_id'];
         const studentName = exam['name'];
         const studentLifegroup = exam['lifegroup'];
@@ -114,7 +114,7 @@ function populateWarriorDomAddCtrl(warriorsDom, psId) {
 }
 
 function populateLocationDom(locationDom, examLocation) {
-    locationDom.innerHTML = LOCATION_INDEXES[examLocation];
+    locationDom.innerHTML = examLocation;
 }
 
 function populateStudentsDom(studentsDom, students) {
@@ -225,7 +225,7 @@ function makeWarriorInfo(exams, prayer_warriors) {
         const psId = prayer_warrior['prayer_warrior_id'];
         const warriorName = prayer_warrior['name'];
         const psTime = exam_lookup[prayer_warrior['exam_id']]['datetime'].substr(11, 5);
-        const psLocation = exam_lookup[prayer_warrior['exam_id']]['place'];
+        const psLocation = MEETING_POINT[exam_lookup[prayer_warrior['exam_id']]['place']];
         if (!(psTime in times)) times[psTime] = {};
         if (!(psLocation in times[psTime])) times[psTime][psLocation] = [];
         times[psTime][psLocation].push({warriorName, psId});
