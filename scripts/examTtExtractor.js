@@ -4,6 +4,7 @@ const regexMobile = /(Class\s*(?<code>.+)\s.+\s*.+\s*.+\s*.+\s*.+\s*Exam Date\s*
 const regexByDate = /[A-Z]+ (?<month>[A-Z]{3}).*?(?<date>[0-9]{1,2})\s+(?<hour>[0-9]{1,2}):(?<minute>[0-9]{2}).+\s+(?<code>.+)\s+.+\s+VENUE:\s+(?<venue>.+)/gm;
 
 const months = ["INVALID", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+const YEAR = 2019
 
 function extractExamTtMonth(month) {
     if (months.includes(month)) return month;
@@ -38,7 +39,9 @@ function extractExamTtModulesRegex(str, reg) {
             month: extractExamTtMonth(m['month']),
             hour: extractExamTtHour(m['hour']),
             minute: m['minute'],
-            location: m['venue']
+            location: m['venue'],
+            location_index: LOCATIONS[m['venue']],
+            datetime: `${m['date']}/${m['month']}/${YEAR} ${m['hour']}:${m['minute']}`,
         }
         modules.push(module)
     }

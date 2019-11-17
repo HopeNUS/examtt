@@ -1,10 +1,10 @@
-const BASE_URL = "https://hopenus-examtt-backend.herokuapp.com"
+const BASE_URL = "http://localhost:8080"
 
 const LIFEGROUP_EXT = "/lifegroup"
 const LIFEGROUP_URL = BASE_URL + LIFEGROUP_EXT
 function getLifegroupUrl() { return LIFEGROUP_URL; }
 
-const EXAMTT_EXT = "/exams"
+const EXAMTT_EXT = "/batch_insert_exams"
 const EXAMTT_URL = BASE_URL + EXAMTT_EXT
 function getExamTtUrl(date, month) { return EXAMTT_URL + "/" + date + "/" + month; }
 function getAddExamTtUrl() { return EXAMTT_URL; }

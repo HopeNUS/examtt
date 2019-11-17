@@ -7,14 +7,11 @@ CLASS_MODULE_FAILURE = "failure",
 CLASS_CELL = "cell";
 let previewDom, codeToModuleDomMap = {};
 
-function updatePreview(successes, failures) {
-    successes.forEach(code => {
-        moduleDom = codeToModuleDomMap[code];
+function updatePreview(successes) {
+    successes.forEach(module => {
+        const code = module['course_code'];
+        const moduleDom = codeToModuleDomMap[code];
         moduleDom.classList.add(CLASS_MODULE_SUCCESS);
-    });
-    failures.forEach(code => {
-        moduleDom = codeToModuleDomMap[code];
-        moduleDom.classList.add(CLASS_MODULE_FAILURE);
     });
 }
 
