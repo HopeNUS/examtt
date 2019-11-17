@@ -16,49 +16,31 @@ const DOM_TABLE_HEADER = `
 
 function getAndDisplayExamTt(date, month, callback) {
     getExamTt(date, month, (examTtResponse)=>{
-        getPrayerWarriorSlot(date, month, (prayerSlotResponse) => {
-            displayExamTt(
-                `${date}${month}`,
-                examTtResponse.students,
-                examTtResponse.exams,
-                prayerSlotResponse.prayerSlots,
-                prayerSlotResponse.prayerSlotsWarriors);
-                callback();
-        });
+        displayExamTt(
+            `${date}${MONTHS[month]}`,
+            examTtResponse.exams,
+            examTtResponse.prayer_warriors,
+        );
+        callback();
     });
 }
 
-function makeExamTtInfo(students, exams) {
-    let times = {}
-    let examLocations = {};
-    let examTimes = {};
-    let examPsIds = {};
+function makeExamTtInfo(exams) {
+    const times = {}
     exams.forEach(exam => {
-        const examLocation = exam.meetingPoint || exam.location;
-        const examTime = exam.time;
-        const examId = exam.id;
-        const examPsId = exam.prayerSlotId;
-        examLocations[examId] = examLocation;
-        examTimes[examId] = examTime;
-        examPsIds[examId] = examPsId;
-    });
-
-
-    students.forEach(student => {
-        const exams = student.exam;
-        exams.forEach(examId => {
-            const examTime = examTimes[examId];
-            const examLocation = examLocations[examId];
-            const examPsId = examPsIds[examId];
-            if (!(examTime in times)) times[examTime] = {};
-            if (!(examLocation in times[examTime])) times[examTime][examLocation] = [];
-            times[examTime][examLocation].push({
-                name: student.name,
-                lifegroup: student.lifegroup,
-                prayerSlotId: examPsId
-            });
-        })
-    });
+        const examTime = exam['datetime'].substr(11, 5);
+        const examLocation = exam['place'];
+        const examPsId = exam['exam_id'];
+        const studentName = exam['name'];
+        const studentLifegroup = exam['lifegroup'];
+        if (!(examTime in times)) times[examTime] = {};
+        if (!(examLocation in times[examTime])) times[examTime][examLocation] = [];
+        times[examTime][examLocation].push({
+            name: studentName,
+            lifegroup: studentLifegroup,
+            prayerSlotId: examPsId
+        });
+    })
 
     return times;
 }
@@ -89,7 +71,6 @@ function makeWarriorCtrlAddOnClick(warriorsDom, psId) {
         }
         showLoading();
         addPrayerWarriorSubscription(psId, warriorName, (res) => {
-            console.log(res);
             warriorDom = makeNewWarriorDom({psId, warriorName});
             warriorsDom.insertBefore(warriorDom, warriorsDom.lastChild);
             hideLoading();
@@ -133,7 +114,7 @@ function populateWarriorDomAddCtrl(warriorsDom, psId) {
 }
 
 function populateLocationDom(locationDom, examLocation) {
-    locationDom.innerHTML = examLocation;
+    locationDom.innerHTML = LOCATION_INDEXES[examLocation];
 }
 
 function populateStudentsDom(studentsDom, students) {
@@ -142,7 +123,7 @@ function populateStudentsDom(studentsDom, students) {
         let studentDom = document.createElement("div");
         studentDom.classList.add("student");
         const name = student.name;
-        const lifegroup = student.lifegroup;
+        const lifegroup = LIFEGROUPS[student.lifegroup];
         nameDom = document.createElement("div");
         nameDom.classList.add("student-detail");
         nameDom.classList.add("name");
@@ -208,7 +189,7 @@ function makeTimeLocationDom(time, locations, psLocations) {
     locationsKey = Object.keys(locations).sort();
     locationsKey.forEach(examLocation => {
         students = locations[examLocation];
-        warriors = psLocations[examLocation];
+        warriors = psLocations[examLocation] || [];
         tableDom = makeLocationStudentDom(examLocation, students, warriors);
         rowDom.appendChild(tableDom);
     });
@@ -226,44 +207,38 @@ function makeSlotDom(date, times, psTimes) {
     timesKey = Object.keys(times).sort();
     timesKey.forEach(time => {
         const locations = times[time];
-        const psLocations = psTimes[time];
+        const psLocations = psTimes[time] || {};
         const timeLocDom = makeTimeLocationDom(time, locations, psLocations);
         slotDom.appendChild(timeLocDom);
     });
     return slotDom;
 }
 
-function makeWarriorInfo(prayerSlots, warriors) {
-    let times = {};
-    let prayerSlotLocation = {};
-    let prayerSlotTime = {};
-
-    prayerSlots.forEach(prayerSlot => {
-        const id = prayerSlot.id;
-        const psLocation = prayerSlot.meetingPoint || prayerSlot.location;
-        const psTime = prayerSlot.time;
-        prayerSlotLocation[id] = psLocation;
-        prayerSlotTime[id] = psTime;
-
-        if (!(psTime in times)) times[psTime] = {};
-        if (!(psLocation in times[psTime])) times[psTime][psLocation] = [];
+function makeWarriorInfo(exams, prayer_warriors) {
+    const times = {};
+    const exam_lookup = {};
+    exams.forEach(exam => {
+        exam_lookup[exam['exam_id']] = exam;
     });
 
-    warriors.forEach(psWarrior => {
-        const psId = psWarrior[0];
-        const warriorName = psWarrior[1];
-        const psTime = prayerSlotTime[psId];
-        const psLocation = prayerSlotLocation[psId];
+    prayer_warriors.forEach(prayer_warrior => {
+        const psId = prayer_warrior['prayer_warrior_id'];
+        const warriorName = prayer_warrior['name'];
+        const psTime = exam_lookup[prayer_warrior['exam_id']]['datetime'].substr(11, 5);
+        const psLocation = exam_lookup[prayer_warrior['exam_id']]['place'];
+        if (!(psTime in times)) times[psTime] = {};
+        if (!(psLocation in times[psTime])) times[psTime][psLocation] = [];
         times[psTime][psLocation].push({warriorName, psId});
     })
 
     return times;
 }
 
-function displayExamTt(date, students, exams, prayerSlots, warriors) {
-    const times = makeExamTtInfo(students, exams);
-    const psTimes = makeWarriorInfo(prayerSlots, warriors);
+function displayExamTt(date, exams, prayer_warriors) {
+    const times = makeExamTtInfo(exams);
+    const psTimes = makeWarriorInfo(exams, prayer_warriors);
     let prayerTableDom = document.getElementById(ID_PRAYER_TABLE);
+    console.log(times, psTimes);
     const slotDom = makeSlotDom(date, times, psTimes);
     prayerTableDom.innerHTML = "";
     prayerTableDom.appendChild(slotDom);
