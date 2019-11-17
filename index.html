@@ -105,9 +105,10 @@
         </section>
     </div>
 
+<script type='text/javascript' src="jquery-3.4.1.min.js"></script>
+<script type='text/javascript' src="scripts/constants.js"></script>
 <script type='text/javascript' src="scripts/examTtExtractor.js"></script>
 <script type='text/javascript' src="scripts/apiUrls.js"></script>
-<script type='text/javascript' src="scripts/http.js"></script>
 <script type='text/javascript' src="scripts/homeScreen.js"></script>
 <script type='text/javascript' src="scripts/loading.js"></script>
 <script type='text/javascript' src="scripts/preview.js"></script>
@@ -118,7 +119,6 @@
 <script>
 window.onload = function() {
     getAndPopulateLifegroup(closeHomeScreen);
-    // showPreview(extractExamTtModules(str));
     listenToTextarea();
     listenToInputs();
 }

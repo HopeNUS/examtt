@@ -28,17 +28,37 @@ function inputsOnChange() {
 }
 
 function sendAddStudentExam() {
-    name = nameField.value;
-    lifegroup = lifegroupField.value;
-    jsonObj = {name, lifegroup, modules};
+    const name = nameField.value;
+    const lifegroup = parseInt(lifegroupField.value);
+    const jsonObj = [];
+    for (let module of modules) {
+        module_data = {
+            "datetime": module['datetime'],
+            "place": module['location_index'],
+            "course_code": module['code'],
+            "name": name,
+            "lifegroup": lifegroup,
+        }
+        jsonObj.push(module_data);
+    }
+    
     jsonStr = JSON.stringify(jsonObj);
     showLoading();
-    send_json(getAddExamTtUrl(), jsonStr, res => {
-        responseObj = JSON.parse(res);
-        updatePreview(responseObj['successes'], responseObj['failures']);
+    $.ajax({
+        url: getAddExamTtUrl(), 
+        type: 'POST', 
+        contentType: 'application/json', 
+        data: jsonStr
+    }).done(res => {
         hideLoading();
-    });
-    // updatePreview(["CS 4231-L1", "PC 1221-L1"], [])
+        if (res['error']) {
+            alert(res['error']);
+            return;
+        }
+        updatePreview(res);
+    }).fail((jqXHR, textStatus, errorThrown) => {
+        alert(errorThrown);
+    })
 }
 
 function submitOnClick() {

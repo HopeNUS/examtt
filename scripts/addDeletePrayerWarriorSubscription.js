@@ -1,14 +1,46 @@
 function deletePrayerWarriorSubscription(prayerSlot, warriorName, callback) {
-    jsonData = [{prayerSlot, warriorName}];
+    jsonData = [prayerSlot];
     jsonStr = JSON.stringify(jsonData);
     url = getDeleteWarriorSubscriptionUrl();
-    send_json(url, jsonStr, callback)
+    $.ajax({
+        url: url, 
+        type: 'POST', 
+        contentType: 'application/json', 
+        data: jsonStr
+    }).done(res => {
+        if (res['error']) {
+            hideLoading();
+            alert(res['error']);
+            return;
+        }
+        callback();
+    }).fail((jqXHR, textStatus, errorThrown) => {
+        hideLoading();
+        alert(errorThrown);
+    })
 }
 
 function addPrayerWarriorSubscription(prayerSlotId, warrior, callback) {
-    prayerSlot = [prayerSlotId];
-    jsonData = {warrior, prayerSlot};
+    jsonData = [{
+        name: warrior,
+        exam_id: prayerSlotId
+    }];
     jsonStr = JSON.stringify(jsonData);
     url = getAddWarriorSubscriptionUrl();
-    send_json(url, jsonStr, callback)
+    $.ajax({
+        url: url, 
+        type: 'POST', 
+        contentType: 'application/json', 
+        data: jsonStr
+    }).done(res => {
+        if (res['error']) {
+            hideLoading();
+            alert(res['error']);
+            return;
+        }
+        callback();
+    }).fail((jqXHR, textStatus, errorThrown) => {
+        hideLoading();
+        alert(errorThrown);
+    })
 }

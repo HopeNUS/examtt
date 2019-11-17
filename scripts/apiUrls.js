@@ -1,20 +1,16 @@
-const BASE_URL = "https://hopenus-examtt-backend.herokuapp.com"
+const BASE_URL = "https://hopenus-examtt-backend.herokuapp.com";
+$.get(BASE_URL);
 
-const LIFEGROUP_EXT = "/lifegroup"
-const LIFEGROUP_URL = BASE_URL + LIFEGROUP_EXT
+const LIFEGROUP_EXT = "/lifegroup";
+const LIFEGROUP_URL = BASE_URL + LIFEGROUP_EXT;
 function getLifegroupUrl() { return LIFEGROUP_URL; }
 
-const EXAMTT_EXT = "/exams"
-const EXAMTT_URL = BASE_URL + EXAMTT_EXT
-function getExamTtUrl(date, month) { return EXAMTT_URL + "/" + date + "/" + month; }
-function getAddExamTtUrl() { return EXAMTT_URL; }
+const BATCH_INSERT_EXAMS = BASE_URL + "/batch_insert_exams";
+const GET_EXAMS_URL = BASE_URL + '/get_exams';
+function getExamTtUrl() { return GET_EXAMS_URL; }
+function getAddExamTtUrl() { return BATCH_INSERT_EXAMS; }
 
-const PRAYER_SLOT_EXT = "/prayers"
-const PRAYER_SLOT_URL = BASE_URL + PRAYER_SLOT_EXT
-const WARRIOR_UNSUB_PRAYER_SLOT_EXT = "/delete"
-const WARRIOR_UNSUB_PRAYER_SLOT_URL = 
-    BASE_URL + PRAYER_SLOT_EXT + WARRIOR_UNSUB_PRAYER_SLOT_EXT;
-const WARRIOR_SUB_PRAYER_SLOT_URL = PRAYER_SLOT_URL;
-function getPrayerSlotUrl(date, month) { return PRAYER_SLOT_URL + "/" + date + "/" + month; }
+const WARRIOR_UNSUB_PRAYER_SLOT_URL =  BASE_URL + '/batch_delete_prayer_warriors';
+const WARRIOR_SUB_PRAYER_SLOT_URL = BASE_URL + '/batch_insert_prayer_warriors';
 function getDeleteWarriorSubscriptionUrl() { return WARRIOR_UNSUB_PRAYER_SLOT_URL; }
 function getAddWarriorSubscriptionUrl() { return WARRIOR_SUB_PRAYER_SLOT_URL; }

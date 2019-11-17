@@ -2,11 +2,7 @@ const ID_LIFEGROUPS_SELECT = "lifegroups";
 
 function getLifegroups(callback)
 {
-    url = getLifegroupUrl();
-    send_get(url, (response)=> {
-        if (response === "") return;
-        callback(JSON.parse(response));
-    })
+    return callback(LIFEGROUPS);
 }
 
 function populateLifegroupSelect(lifegroups)
@@ -15,7 +11,7 @@ function populateLifegroupSelect(lifegroups)
     for (const i in lifegroups) {
         lg = lifegroups[i];
         lg_dom = document.createElement("option");
-        lg_dom.value = lg;
+        lg_dom.value = i;
         lg_dom.innerHTML = lg;
         lifegroupsSelect.appendChild(lg_dom);
     }
