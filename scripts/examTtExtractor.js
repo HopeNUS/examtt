@@ -30,15 +30,16 @@ function extractExamTtModulesRegex(str, reg) {
         }
         
         m = m.groups;
+	const extracted_hour = extractExamTtHour(m['hour']);
         const module = {
             code: m['code'],
             date: extractExamTtDate(m['date']),
             month: extractExamTtMonth(m['month']),
-            hour: extractExamTtHour(m['hour']),
+            hour: extracted_hour,
             minute: m['minute'],
             location: m['venue'],
             location_index: LOCATIONS[m['venue']],
-            datetime: `${m['date']}/${m['month']}/${YEAR} ${m['hour']}:${m['minute']}`,
+            datetime: `${m['date']}/${m['month']}/${YEAR} ${extracted_hour}:${m['minute']}`,
         }
         modules.push(module)
     }
